@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ReadingBuddies</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="tab_one">Home</string>
+    <string name="tab_two">Discove</string>
+    <string name="tab_three">Contact</string>
+    <string name="tab_four">Me</string>
+    <string name="read_title_label">Title</string>
+    <string name="read_comment">Comment</string>
+    <string name="read_solved_label">Solved?</string>
+    <string name="comments_title">Comments</string>
+    <string name="new_comment">New Reading</string>
+
+    <string name="read_title_hint">Enter a book name.</string>
+</resources>

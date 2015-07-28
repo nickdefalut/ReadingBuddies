@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView android:id="@+id/comment_book_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:focusable="false"
+        android:padding="4dp" />
+    <TextView android:id="@+id/comment_reader_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comment_book_name"
+        android:textStyle="bold"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="Comment title" />
+    <TextView android:id="@+id/comment_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comment_reader_name"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="4dp"
+        android:text="Comment date" />
+    <TextView android:id="@+id/comment_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comment_description"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="4dp"
+        android:text="Coment Location" />
+</RelativeLayout>
+
+

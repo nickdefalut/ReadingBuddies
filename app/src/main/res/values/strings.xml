@@ -13,4 +13,11 @@
     <string name="new_comment">New Reading</string>
 
     <string name="read_title_hint">Enter a book name.</string>
+
+
+
+    <string name="current_location">Current Loaction:</string>
+
+    <color name="login_background">#1A7ED0</color>
+    <color name="tool_bar_bg">#1A7ED0</color>
 </resources>

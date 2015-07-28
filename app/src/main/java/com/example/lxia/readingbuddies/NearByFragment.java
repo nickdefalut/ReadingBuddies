@@ -48,12 +48,16 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
     private Sensor mSensor;
     private OnLocationChangedListener mListener;
     private AMapLocation lastMapLocation;
+    private View root;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.map_layout, container, false);
+        if (root == null) {
+            root = inflater.inflate(R.layout.map_layout, container, false);
+            aMap = null;
+        }
 
         mMapView = (MapView) root.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
@@ -92,8 +96,6 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// ????????????
         aMap.setMyLocationEnabled(true);// ???true??????????????false??????????????????false
 
-
-
     }
 
     @Override
@@ -128,7 +130,7 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
         if (mListener != null && aMapLocation != null) {
-            mListener.onLocationChanged(aMapLocation);// ???????
+           // mListener.onLocationChanged(aMapLocation);// ???????
             mGPSMarker.setPosition(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude()));
 
             //Location changed and Time changed to update search result 500m and 1min

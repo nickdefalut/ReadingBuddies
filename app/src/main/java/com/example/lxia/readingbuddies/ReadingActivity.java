@@ -6,11 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class ReadingActivity extends FragmentActivity {
+public class ReadingActivity extends AppCompatActivity {
     /** Called when the activity is first created. */
     RadioGroup radioGroup;
     Fragment meFragment;
@@ -63,7 +64,7 @@ public class ReadingActivity extends FragmentActivity {
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
         transaction.replace(R.id.fragmentContainer, newFragment);
-        transaction.addToBackStack(null);
+      //  transaction.addToBackStack(null);
 
         // Commit the transaction
         transaction.commit();
@@ -88,6 +89,6 @@ public class ReadingActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
         Fragment commentListFragment=new CommentListFragment();
-        addFragment(commentListFragment);
+        replaceFragment(commentListFragment);
     }
 }

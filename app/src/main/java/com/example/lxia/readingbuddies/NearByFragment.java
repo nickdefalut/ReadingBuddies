@@ -48,16 +48,12 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
     private Sensor mSensor;
     private OnLocationChangedListener mListener;
     private AMapLocation lastMapLocation;
-    private View root;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        if (root == null) {
-            root = inflater.inflate(R.layout.map_layout, container, false);
-            aMap = null;
-        }
+        View root = inflater.inflate(R.layout.map_layout, container, false);
 
         mMapView = (MapView) root.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);

@@ -21,6 +21,13 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     </android.support.design.widget.AppBarLayout>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cv_face"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/ic_launcher"/>
 
     <EditText
         android:layout_marginLeft="25dp"
@@ -30,7 +37,6 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="Email"
-        android:layout_marginTop="20dp"
         android:textSize="18sp"/>
 
     <EditText

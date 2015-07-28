@@ -24,35 +24,40 @@ public class ReadingActivity extends AppCompatActivity {
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
         boolean checked = ((RadioButton) view).isChecked();
 
+        boolean isNew = false;
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_home:
                 if(commentListFragment==null)
                 {
-                    commentListFragment=new CommentListFragment();
+                    commentListFragment = new CommentListFragment();
+                    isNew = true;
                 }
-                replaceFragment(commentListFragment);
+                addFragment(commentListFragment, isNew);
                     break;
             case R.id.radio_discover:
                 if(nearByFragment==null)
                 {
-                    nearByFragment=new NearByFragment();
+                    nearByFragment = new NearByFragment();
+                    isNew = true;
                 }
-                replaceFragment(nearByFragment);
+                addFragment(nearByFragment, isNew);
                 break;
             case R.id.radio_contact:
                 if(contactFragment==null)
                 {
-                    contactFragment=new ContactFragment();
+                    contactFragment = new ContactFragment();
+                    isNew = true;
                 }
-                replaceFragment(contactFragment);
+                addFragment(contactFragment, isNew);
                 break;
             case R.id.radio_me:
                 if(meFragment==null)
                 {
-                    meFragment=new MeFragment();
+                    meFragment = new MeFragment();
+                    isNew = true;
                 }
-                replaceFragment(meFragment);
+                addFragment(meFragment, isNew);
                     break;
         }
     }
@@ -64,23 +69,42 @@ public class ReadingActivity extends AppCompatActivity {
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack so the user can navigate back
         transaction.replace(R.id.fragmentContainer, newFragment);
-      //  transaction.addToBackStack(null);
+        transaction.addToBackStack(newFragment.toString());
 
         // Commit the transaction
         transaction.commit();
     }
 
-    void addFragment(Fragment fragemntToBeUsed)
+    void addFragment(Fragment fragment, boolean isNew)
     {
-        FragmentManager manager = getSupportFragmentManager();
-        Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+       // Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
 
-        //if (fragment == null) {
-            fragment = fragemntToBeUsed;
-            manager.beginTransaction()
-                    .add(R.id.fragmentContainer, fragment)
-                    .commit();
-        //}
+        if (fragment == null) return;
+
+        if (meFragment != null) {
+            transaction.hide(meFragment);
+        }
+
+        if (commentListFragment != null) {
+            transaction.hide(commentListFragment);
+        }
+
+        if (contactFragment != null) {
+            transaction.hide(contactFragment);
+        }
+
+        if (nearByFragment != null) {
+            transaction.hide(nearByFragment);
+        }
+
+        if (isNew) {
+            transaction
+                    .add(R.id.fragmentContainer, fragment);
+        }
+        transaction.show(fragment);
+        transaction.commit();
+
     }
 
 
@@ -88,7 +112,9 @@ public class ReadingActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
-        Fragment commentListFragment=new CommentListFragment();
-        replaceFragment(commentListFragment);
+
+        commentListFragment = new CommentListFragment();
+
+        addFragment(commentListFragment, true);
     }
 }

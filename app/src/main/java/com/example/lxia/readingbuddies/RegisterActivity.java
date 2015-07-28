@@ -3,6 +3,7 @@ package com.example.lxia.readingbuddies;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -23,6 +24,8 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private TextView mLogin;
     private Button mSubmit;
     private String mGender;
+    private CircleImageView mFace;
 
 
     @Override
@@ -54,6 +58,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         mSubmit = (Button) findViewById(R.id.submit);
         mSubmit.setOnClickListener(this);
+
+        mFace = (CircleImageView) findViewById(R.id.cv_face);
+        mFace.setOnClickListener(this);
 
     }
 
@@ -191,8 +198,31 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.submit:
                 register();
                 break;
+            case R.id.cv_face:
+                openGallery();
+                break;
             default:break;
         }
+    }
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == RESULT_OK) {
+
+            if (resultCode == 1) {
+
+
+
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void gotoLogin() {

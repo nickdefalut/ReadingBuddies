@@ -70,10 +70,9 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
     }
 
     private void init() {
-        if (aMap == null) {
-            aMap = mMapView.getMap();
-            setUpMap();
-        }
+       // if (aMap == null) {
+            aMap = mMapView.getMap(); setUpMap();
+        //}
     }
 
     /**
@@ -126,7 +125,7 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
         if (mListener != null && aMapLocation != null) {
-           // mListener.onLocationChanged(aMapLocation);// ???????
+            mListener.onLocationChanged(aMapLocation);// ???????
             mGPSMarker.setPosition(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude()));
 
             //Location changed and Time changed to update search result 500m and 1min
@@ -174,6 +173,7 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
     * */
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
+
         mListener = onLocationChangedListener;
         if (mAMapLocationManager == null) {
             mAMapLocationManager = LocationManagerProxy.getInstance(getActivity());

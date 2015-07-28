@@ -2,6 +2,9 @@ package com.example.lxia.readingbuddies;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -215,10 +218,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if (resultCode == RESULT_OK) {
 
-            if (resultCode == 1) {
+            if (requestCode == 1) {
 
+                String [] proj={MediaStore.Images.Media.DATA};
+                Cursor cursor = getContentResolver().query(data.getData(), proj, null, null, null);
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                cursor.moveToFirst();
+                String path = cursor.getString(column_index);
+                cursor.close();
 
+                showMessage(path);
 
+                Bitmap bitmap = BitmapFactory.decodeFile(path);
+                mFace.setImageBitmap(bitmap);
             }
         }
 

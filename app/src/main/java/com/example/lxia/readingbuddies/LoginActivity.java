@@ -118,9 +118,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //send request
 
-        String url = "";
+        String url = "http://api.douban.com/v2/book/isbn/9787530209936";
         StringRequest loginRequest = new StringRequest(
-                Request.Method.POST,
+                Request.Method.GET,
                 url,
                 new Response.Listener<String>() {
                     @Override

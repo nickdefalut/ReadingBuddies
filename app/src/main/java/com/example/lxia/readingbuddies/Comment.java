@@ -11,6 +11,15 @@ public class Comment {
     private String mBookTitle;
     private Date mDate;
     private String mCommentName;
+    private String mIsbn;
+
+    public String getmIsbn() {
+        return mIsbn;
+    }
+
+    public void setmIsbn(String mIsbn) {
+        this.mIsbn = mIsbn;
+    }
 
     public String getDescription() {
         return mDescription;

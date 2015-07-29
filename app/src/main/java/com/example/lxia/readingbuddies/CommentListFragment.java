@@ -5,6 +5,8 @@ package com.example.lxia.readingbuddies;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +19,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class CommentListFragment extends ListFragment {
 
@@ -37,6 +50,42 @@ public class CommentListFragment extends ListFragment {
         setRetainInstance(true);
     }
 
+    private void loadUrl(final ImageView imageview) {
+
+        String url = "http://api.douban.com/v2/book/isbn/9787530209936";
+        StringRequest urlRequest = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+//
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            if (jsonObject.has("image")) {
+                                Utils.loadImage(jsonObject.getString("iamge"), imageview);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+
+        urlRequest.setTag(TAG);
+        MyApplication.getInstance().getVolleyQueue().add(urlRequest);
+    }
+
+    private void loadData() {
+
+    }
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // To be done, jump to another fragment
@@ -59,30 +108,42 @@ public class CommentListFragment extends ListFragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
+            ViewHodler holder = null;
             // if we weren't given a view, inflate one
             if (null == convertView) {
                 convertView = getActivity().getLayoutInflater()
                         .inflate(R.layout.list_item_comment, null);
+
+                holder = new ViewHodler();
+                holder.image = (ImageView) convertView.findViewById(R.id.iv_book);
+                holder.bookname = (TextView) convertView.findViewById(R.id.tv_book_name);
+                holder.loc = (TextView) convertView.findViewById(R.id.tv_location);
+                holder.comment = (TextView) convertView.findViewById(R.id.tv_comment);
+                holder.reader = (TextView) convertView.findViewById(R.id.tv_reader);
+
+                convertView.setTag(holder);
+
+            } else {
+
+                holder = (ViewHodler) convertView.getTag();
+
             }
 
             // configure the view for this Comment
             Comment c = getItem(position);
 
-            TextView titleTextView =
-                    (TextView)convertView.findViewById(R.id.comment_book_name);
-            titleTextView.setText(c.getBookTitle());
-            TextView descriptionTextView =
-                    (TextView)convertView.findViewById(R.id.comment_description);
-            descriptionTextView.setText(c.getDescription());
-            TextView readerTextView =
-                    (TextView)convertView.findViewById(R.id.comment_reader_name);
-            readerTextView.setText(c.getCommentName());
-            TextView locationTextView =
-                    (TextView)convertView.findViewById(R.id.comment_location);
-            locationTextView.setText(c.getLocation());
-
             return convertView;
         }
+    }
+
+    static class ViewHodler {
+
+        ImageView image;
+        TextView bookname;
+        TextView reader;
+        TextView loc;
+        TextView comment;
     }
 
 

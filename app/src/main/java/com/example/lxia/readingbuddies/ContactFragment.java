@@ -64,9 +64,10 @@ public class ContactFragment extends ListFragment {
         // To be done, jump to another fragment
 //        Reader r = (Reader)(getListAdapter()).getItem(position);
 //        // start an instance of CrimeActivity
-//        Intent i = new Intent(getActivity(), OneChatActivity.class);
-//        i.putExtra(OneChatFragment.EXTRA_USER_ID, r.getId());
-       // startActivityForResult(i, 0);
+        Intent i = new Intent(getActivity(), OneChatActivity.class);
+        i.putExtra("userId","1");
+        i.putExtra("toUserId","11");
+        startActivity(i);
     }
 
     @Override

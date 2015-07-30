@@ -35,7 +35,7 @@ public class MeFragment extends Fragment {
         View v = inflater.inflate(R.layout.me_fragment, parent, false);
 
         mNameField = (TextView)v.findViewById(R.id.reader_name);
-        mGenderField = (TextView)v.findViewById(R.id.reader_gender);
+       // mGenderField = (TextView)v.findViewById(R.id.reader_gender);
         mNameField.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 mNameField.setText(c.toString());

@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:gravity="center_vertical">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/cv_head"/>
+
     <TextView android:id="@+id/reader_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:focusable="false"
-        android:padding="4dp"
-        android:gravity="left" />
-    <TextView android:id="@+id/reader_gender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/reader_name"
-        android:textStyle="bold"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:text="Gender" />
-</RelativeLayout>
+        android:layout_marginLeft="10dp"
+        android:textSize="18sp"/>
+
+</LinearLayout>
 
 

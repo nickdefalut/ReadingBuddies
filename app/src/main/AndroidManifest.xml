@@ -13,14 +13,12 @@
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
-
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="564fbc40786d388df0cba3aa5a279880" />
@@ -37,35 +35,46 @@
         <activity
             android:name=".OneCommentActivity"
             android:label="@string/app_name" >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ReadingActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ReadingActivity" />
         </activity>
         <activity
             android:name=".OneChatActivity"
             android:label="@string/app_name" >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ReadingActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ReadingActivity" />
         </activity>
         <activity
             android:name=".NewReadingActivity"
             android:label="@string/app_name" >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ReadingActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ReadingActivity" />
         </activity>
-        <activity android:name=".LoginActivity">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".LoginActivity" >
 
-            <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".MapActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".MapActivity" >
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".BookCommentActivity"
+            android:label="@string/title_activity_book_comment" >
         </activity>
     </application>
 

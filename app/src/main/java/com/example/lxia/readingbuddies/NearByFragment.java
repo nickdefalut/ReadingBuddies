@@ -1,6 +1,7 @@
 package com.example.lxia.readingbuddies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -90,6 +91,28 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
         aMap.setLocationSource(this);// ??????
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// ????????????
         aMap.setMyLocationEnabled(true);// ???true??????????????false??????????????????false
+        aMap.setInfoWindowAdapter(this);
+        aMap.setOnInfoWindowClickListener(this);
+        aMap.setOnMarkerClickListener(this);
+        addMarkersToMap();
+
+    }
+
+    private void addMarkersToMap() {
+
+        aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f)
+                .position(Constants.ZHONGGUANCUN).title("成都市")
+                .snippet("成都市:30.679879, 104.064855").draggable(true));
+        aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f)
+                .position(Constants.XIAN).title("西安市")
+                .snippet("西安市:30.679879, 104.064855").draggable(true));
+        aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f)
+                .position(Constants.ZHENGZHOU).title("郑州市")
+                .snippet("郑州市:30.679879, 104.064855").draggable(true));
+        aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f)
+                .position(Constants.BEIJING).title("The Book Of Lost Things")
+                .snippet("For system designer").draggable(true));
+
 
     }
 
@@ -230,6 +253,7 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
             marker.showInfoWindow();
         } else {
             marker.hideInfoWindow();
+            return true;
         }
         return false;
     }
@@ -237,18 +261,21 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
     @Override
     public View getInfoWindow(Marker marker) {
 
-        View infoContent = getActivity().getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        View infoContent = getActivity().getLayoutInflater().inflate(R.layout.custom_info_window, null);
 
         render(marker, infoContent);
         return infoContent;
+
+//        return null;
     }
 
     @Override
     public View getInfoContents(Marker marker) {
-        View infoWindow = getActivity().getLayoutInflater().inflate(R.layout.custom_info_window, null);
+        View infoWindow = getActivity().getLayoutInflater().inflate(R.layout.custom_info_contents, null);
 
         render(marker, infoWindow);
         return infoWindow;
+//        return null;
     }
 
 
@@ -273,7 +300,7 @@ public class NearByFragment extends Fragment implements AMapLocationListener,Loc
     public void onInfoWindowClick(Marker marker) {
 
 
-
-        // start another activity
+        //
+        startActivity(new Intent(getActivity(), BookCommentActivity.class));
     }
 }

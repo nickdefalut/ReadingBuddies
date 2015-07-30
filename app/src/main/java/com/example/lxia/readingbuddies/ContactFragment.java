@@ -20,31 +20,53 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ContactFragment extends ListFragment {
 
     private static final String TAG = "ContactFragment";
 
-    private ArrayList<Reader> mReaders;
+    private ArrayList<Contact> mReaders;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setHasOptionsMenu(true);
         getActivity().setTitle(R.string.comments_title);
-        mReaders = ReaderLab.get(getActivity()).getReaders();
+        init();
         ReaderAdapter adapter = new ReaderAdapter(mReaders);
         setListAdapter(adapter);
         setRetainInstance(true);
     }
 
+    private void init() {
+
+        mReaders = new ArrayList<>();
+        mReaders.add(new Contact(0,"Abdullah Shoaib"));
+        mReaders.add(new Contact(1,"Ogre_BGR"));
+        mReaders.add(new Contact(1,"Rocknrolla"));
+        mReaders.add(new Contact(1,"john hallw"));
+        mReaders.add(new Contact(0,"KU la sha"));
+        mReaders.add(new Contact(0,"Han Han"));
+        mReaders.add(new Contact(0,"Jian Jun"));
+        mReaders.add(new Contact(1,"Wu Di Haio"));
+        mReaders.add(new Contact(0,"Flying Bird"));
+        mReaders.add(new Contact(1,"Sdash Maerk"));
+        mReaders.add(new Contact(1,"OPikbn Dumsa"));
+        mReaders.add(new Contact(1,"Ljdasf Koilu"));
+        mReaders.add(new Contact(0,"Phasu Mhfas"));
+        mReaders.add(new Contact(0,"Jopaf Shoaib"));
+
+    }
+
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // To be done, jump to another fragment
-        Reader r = (Reader)(getListAdapter()).getItem(position);
-        // start an instance of CrimeActivity
-        Intent i = new Intent(getActivity(), OneChatActivity.class);
-        i.putExtra(OneChatFragment.EXTRA_USER_ID, r.getId());
-        startActivityForResult(i, 0);
+//        Reader r = (Reader)(getListAdapter()).getItem(position);
+//        // start an instance of CrimeActivity
+//        Intent i = new Intent(getActivity(), OneChatActivity.class);
+//        i.putExtra(OneChatFragment.EXTRA_USER_ID, r.getId());
+       // startActivityForResult(i, 0);
     }
 
     @Override
@@ -52,8 +74,8 @@ public class ContactFragment extends ListFragment {
         ((ReaderAdapter)getListAdapter()).notifyDataSetChanged();
     }
 
-    private class ReaderAdapter extends ArrayAdapter<Reader> {
-        public ReaderAdapter(ArrayList<Reader> crimes) {
+    private class ReaderAdapter extends ArrayAdapter<Contact> {
+        public ReaderAdapter(ArrayList<Contact> crimes) {
             super(getActivity(), android.R.layout.simple_list_item_1, crimes);
         }
 
@@ -66,14 +88,19 @@ public class ContactFragment extends ListFragment {
             }
 
             // configure the view for this Reader
-            Reader r = getItem(position);
+            Contact r = mReaders.get(position);
 
-            TextView nameTextView =
-                    (TextView)convertView.findViewById(R.id.reader_name);
-            nameTextView.setText(r.getName());
+            CircleImageView header =
+                    (CircleImageView)convertView.findViewById(R.id.cv_head);
+
+            if (r.getId() == 0) {
+                header.setImageResource(R.drawable.head);
+            } else {
+                header.setImageResource(R.drawable.head_boy);
+            }
             TextView genderTextView =
-                    (TextView)convertView.findViewById(R.id.reader_gender);
-            genderTextView.setText(r.getGender());
+                    (TextView)convertView.findViewById(R.id.reader_name);
+            genderTextView.setText(r.getName());
 
 
             return convertView;

@@ -13,6 +13,16 @@ public class Comment {
     private String mCommentName;
     private String mIsbn;
 
+    public Comment(int mId, String mBookTitle, Date mDate, String mCommentName, String mIsbn, String mDescription, String mLocation) {
+        this.mId = mId;
+        this.mBookTitle = mBookTitle;
+        this.mDate = mDate;
+        this.mCommentName = mCommentName;
+        this.mIsbn = mIsbn;
+        this.mDescription = mDescription;
+        this.mLocation = mLocation;
+    }
+
     public String getmIsbn() {
         return mIsbn;
     }

@@ -25,7 +25,7 @@ public class CommentLab {
             c.setDescription("Description #" + i);
             c.setLocation("Location #" + i);
             c.setCommentName("CommentName #" + i);
-          //  c.setmIsbn();
+            c.setmIsbn("9787530209936");
             mComments.add(c);
         }
     }
